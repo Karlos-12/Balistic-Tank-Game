@@ -13,7 +13,7 @@ namespace Balistic_Tank_Game
         public int health { get; internal set; }
         public int armor { get; internal set; }
         public Tank tank { get; internal set; }
-        public decimal gun_angle { get; set; }
+        public double gun_angle { get; set; }
 
         public Player(string username, Tank tank) 
         {
@@ -31,15 +31,21 @@ namespace Balistic_Tank_Game
             armor = (armor / 4) - random.Next(0,(armor/6));
         }
 
-        public delegate void ShotHandler(int potencial_damage, int angle);
+        public delegate void ShotHandler(Player sender, int potencial_damage, double angle);
         public event ShotHandler Shot;
 
         public void Shoot()
         {
             ammo--;
-            Shot.Invoke(tank.damage, ((int)gun_angle));
+            Shot.Invoke(this, tank.damage, gun_angle);
             gun_angle += random.Next(-5, 5);
             gun_align();    
+        }
+
+        public void Set_gunangle(double angle)
+        {
+            gun_angle = angle;
+            gun_align();
         }
 
         private void gun_align()

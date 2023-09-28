@@ -7,20 +7,30 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1600" Background="#FF1A1A1A" Foreground="{x:Null}">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
-        <Grid Margin="10,0,0,0" Grid.Row="1">
+        <Label x:Name="user2_dis" Content="username_2" Margin="10,10,10,10" Background="{x:Null}" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="64" FontWeight="Bold" FontFamily="Consolas" Grid.Column="2"/>
+
+        <Label x:Name="user1_dis" Content="username_1" Margin="10,10,10,10" Background="{x:Null}" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="64" FontWeight="Bold" FontFamily="Consolas"/>
+
+        <Grid Margin="10,589,0,0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="anglup_btn" Content="UP" Background="#FF2E2E2E" BorderBrush="{x:Null}" Foreground="White" FontFamily="Consolas" FontSize="32" Grid.Column="3" Margin="10,10,10,10" Click="anglup_btn_Click"/>
-            <Button x:Name="angldown_btn" Content="DOWN" Background="#FF2E2E2E" BorderBrush="{x:Null}" Foreground="White" FontFamily="Consolas" FontSize="32" Margin="10,10,10,10" Grid.Column="2" Click="angldown_btn_Click"/>
-            <Label Grid.Column="1" Content="000" Margin="10,10,10,10" Foreground="#FF17BB00" Background="#FF2E2E2E" FontSize="64" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+
+            <Button x:Name="anglup_btn" Content="UP" Background="#FF2E2E2E" BorderBrush="{x:Null}" Foreground="White" FontFamily="Consolas" FontSize="32" Grid.Column="3" Margin="10,10,10,10" Click="anglup_btn_Click" MouseDown="anglup_btn_MouseDown" MouseUp="anglup_btn_MouseUp"/>
+            <Button x:Name="angldown_btn" Content="DOWN" Background="#FF2E2E2E" BorderBrush="{x:Null}" Foreground="White" FontFamily="Consolas" FontSize="32" Margin="10,10,10,10" Grid.Column="2" Click="angldown_btn_Click" MouseDown="angldown_btn_MouseDown" MouseUp="angldown_btn_MouseUp"/>
+            <Label x:Name="angle_dis" Grid.Column="1" Content="000" Margin="10,10,10,10" Foreground="#FF17BB00" Background="#FF2E2E2E" FontSize="64" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
         </Grid>
 
     </Grid>

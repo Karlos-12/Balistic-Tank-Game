@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Balistic_Tank_Game
 {
@@ -20,19 +21,104 @@ namespace Balistic_Tank_Game
     /// </summary>
     public partial class MainWindow : Window
     {
+        Game main_game;
+
+
+        DispatcherTimer clickAndHoldTimer_up;
+        DispatcherTimer clickAndHoldTimer_down;
+        const int clikandhold_time = 75;
+
         public MainWindow()
         {
             InitializeComponent();
+            Timer_setup();
+
+            main_game = new Game("test_1", "test_2", new Tank("Tiger-1a", "Mega mrdnik to je", 15, 75, 275, 60, 10), new Tank("Tiger-2a", "Mega mrdnik to je", 15, 75, 275, 60, 10));
+            Render();
+        }
+
+        private void Timer_setup()
+        {
+            clickAndHoldTimer_up = new DispatcherTimer();
+            clickAndHoldTimer_up.Tick += ClickAndHoldTimer_Tick_up;
+            clickAndHoldTimer_up.Interval = TimeSpan.FromMilliseconds(clikandhold_time);
+
+            clickAndHoldTimer_down = new DispatcherTimer();
+            clickAndHoldTimer_down.Tick += ClickAndHoldTimer_Tick_down;
+            clickAndHoldTimer_down.Interval = TimeSpan.FromMilliseconds(clikandhold_time);
+        }
+
+        private void ClickAndHoldTimer_Tick_up(object? sender, EventArgs e)
+        {
+            anglup_btn_Click(sender, new RoutedEventArgs());
+        }
+
+        private void ClickAndHoldTimer_Tick_down(object? sender, EventArgs e)
+        {
+            angldown_btn_Click(sender, new RoutedEventArgs());
+        }
+
+        public void Render()
+        {
+            user1_dis.Content = main_game.player_1.username;
+            user2_dis.Content = main_game.player_2.username;
+
+            if (main_game.turn == Turn.player_1) angle_dis.Content = main_game.player_1.gun_angle;
+            else angle_dis.Content = main_game.player_2.gun_angle;
         }
 
         private void angldown_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            double new_angle;
+            if(main_game.turn == Turn.player_1)
+            {
+                new_angle = main_game.player_1.gun_angle -= 0.5;
+                main_game.player_1.Set_gunangle(new_angle);
+            }
+            else
+            {
+                new_angle = main_game.player_1.gun_angle -= 0.5;
+                main_game.player_2.Set_gunangle(new_angle);
+            }
+            Render();
         }
 
         private void anglup_btn_Click(object sender, RoutedEventArgs e)
         {
+            double new_angle;
+            if (main_game.turn == Turn.player_1)
+            {
+                new_angle = main_game.player_1.gun_angle += 0.5;
+                main_game.player_1.Set_gunangle(new_angle);
+            }
+            else
+            {
+                new_angle = main_game.player_1.gun_angle += 0.5;
+                main_game.player_2.Set_gunangle(new_angle);
+            }
+            Render();
+        }
 
+        
+
+        private void angldown_btn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            clickAndHoldTimer_down.Start();
+        }
+
+        private void angldown_btn_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            clickAndHoldTimer_down.Stop();
+        }
+
+        private void anglup_btn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            clickAndHoldTimer_up.Start();
+        }
+
+        private void anglup_btn_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            clickAndHoldTimer_up.Stop();
         }
     }
 }

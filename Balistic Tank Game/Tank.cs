@@ -14,8 +14,9 @@ namespace Balistic_Tank_Game
         public int max_armor { get; internal set; }
         public int max_health { get; internal set; }
         public int damage { get; internal set; }
+        public double gun_velocity { get; internal set; }
 
-        public Tank(string name, string description, int ammo_storage, int max_armor, int max_health, int damage)
+        public Tank(string name, string description, int ammo_storage, int max_armor, int max_health, int damage, double gun_velocity)
         {
             this.name = name;
             this.description = description;
@@ -23,6 +24,7 @@ namespace Balistic_Tank_Game
             this.max_armor = max_armor;
             this.max_health = max_health;
             this.damage = damage;
+            this.gun_velocity = gun_velocity;
         }
     }
 }
