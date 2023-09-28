@@ -26,14 +26,17 @@ namespace Balistic_Tank_Game
 
         DispatcherTimer clickAndHoldTimer_up;
         DispatcherTimer clickAndHoldTimer_down;
-        const int clikandhold_time = 75;
+        const int clikandhold_time = 25;
 
         public MainWindow()
         {
             InitializeComponent();
             Timer_setup();
 
+            //pseudo data
             main_game = new Game("test_1", "test_2", new Tank("Tiger-1a", "Mega mrdnik to je", 15, 75, 275, 60, 10), new Tank("Tiger-2a", "Mega mrdnik to je", 15, 75, 275, 60, 10));
+            
+            
             Render();
         }
 
@@ -63,8 +66,26 @@ namespace Balistic_Tank_Game
             user1_dis.Content = main_game.player_1.username;
             user2_dis.Content = main_game.player_2.username;
 
-            if (main_game.turn == Turn.player_1) angle_dis.Content = main_game.player_1.gun_angle;
-            else angle_dis.Content = main_game.player_2.gun_angle;
+            if (main_game.turn == Turn.player_1)
+            {
+                user1_dis.Foreground = Brushes.Green;
+                user2_dis.Foreground = Brushes.White;
+                angle_dis.Content = main_game.player_1.gun_angle;
+                health_bar.Value = main_game.player_1.health;
+                health_bar.Maximum = main_game.player_1.tank.max_health;
+                armor_bar.Value = main_game.player_1.armor;
+                armor_bar.Maximum = main_game.player_1.tank.max_armor;
+            }
+            else
+            {
+                user2_dis.Foreground = Brushes.Green;
+                user1_dis.Foreground = Brushes.White;
+                angle_dis.Content = main_game.player_2.gun_angle;
+                health_bar.Value = main_game.player_2.health;
+                health_bar.Maximum = main_game.player_2.tank.max_health;
+                armor_bar.Value = main_game.player_2.armor;
+                armor_bar.Maximum = main_game.player_2.tank.max_armor;
+            }
         }
 
         private void angldown_btn_Click(object sender, RoutedEventArgs e)
@@ -99,8 +120,6 @@ namespace Balistic_Tank_Game
             Render();
         }
 
-        
-
         private void angldown_btn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             clickAndHoldTimer_down.Start();
@@ -120,5 +139,8 @@ namespace Balistic_Tank_Game
         {
             clickAndHoldTimer_up.Stop();
         }
+
+
+
     }
 }
