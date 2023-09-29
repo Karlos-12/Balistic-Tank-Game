@@ -34,10 +34,9 @@ namespace Balistic_Tank_Game
             Timer_setup();
 
             //pseudo data
-            main_game = new Game("test_1", "test_2", new Tank("Tiger-1a", "Mega mrdnik to je", 15, 75, 275, 60, 9), new Tank("Tiger-2a", "Mega mrdnik to je", 15, 75, 275, 60, 10));
+            main_game = new Game("test_1", "test_2", new Tank("Tiger-1a", "Mega mrdnik to je", 15, 75, 275, 60, 9, "Tank1.png"), new Tank("Tiger-2a", "Mega mrdnik to je", 15, 75, 275, 60, 10, "Tank2.png"));
             main_game.player_1.Shoot();
             
-            Render();
         }
 
         private void Timer_setup()
@@ -70,7 +69,7 @@ namespace Balistic_Tank_Game
             {
                 user1_dis.Foreground = Brushes.Green;
                 user2_dis.Foreground = Brushes.White;
-                angle_dis.Content = main_game.player_1.gun_angle;
+                angle_dis.Content = main_game.player_1.gun_angle +"°";
                 health_bar.Value = main_game.player_1.health;
                 health_bar.Maximum = main_game.player_1.tank.max_health;
                 armor_bar.Value = main_game.player_1.armor;
@@ -80,12 +79,64 @@ namespace Balistic_Tank_Game
             {
                 user2_dis.Foreground = Brushes.Green;
                 user1_dis.Foreground = Brushes.White;
-                angle_dis.Content = main_game.player_2.gun_angle;
+                angle_dis.Content = main_game.player_2.gun_angle +"°";
                 health_bar.Value = main_game.player_2.health;
                 health_bar.Maximum = main_game.player_2.tank.max_health;
                 armor_bar.Value = main_game.player_2.armor;
                 armor_bar.Maximum = main_game.player_2.tank.max_armor;
             }
+
+
+
+
+            main_dis.Children.Clear();
+            var temp1 = prerender_tank(main_game.player_1.tank);
+            main_dis.Children.Add(temp1);
+            Canvas.SetLeft(temp1, main_dis.ActualWidth * (main_game.player_1.position/2));
+
+            var temp1g = prerender_gun(main_game.player_1);
+            main_dis.Children.Add(temp1g);
+            Canvas.SetLeft(temp1g, main_dis.ActualWidth * (main_game.player_1.position/2 + 0.11));
+            Canvas.SetBottom(temp1g, (main_dis.ActualHeight * 0.395));
+
+
+            var temp2 = prerender_tank(main_game.player_2.tank);
+            main_dis.Children.Add(temp2);
+            Canvas.SetRight(temp2, main_dis.ActualWidth * (main_game.player_2.position/2));
+
+            var temp2g = prerender_gun(main_game.player_2);
+            main_dis.Children.Add(temp2g);
+            Canvas.SetRight(temp2g, main_dis.ActualWidth * (main_game.player_2.position/2 + 0.075));
+            Canvas.SetBottom(temp2g, (main_dis.ActualHeight * 0.41));
+        }
+
+        private Image prerender_tank(Tank tank)
+        {
+            Image temp = new Image();
+            temp.Source = new BitmapImage(new Uri("Media/"+ tank.texture, UriKind.Relative));
+            temp.Height = main_dis.ActualHeight*0.25;
+            temp.Width = main_dis.ActualWidth*0.15;
+            Canvas.SetBottom(temp, (main_dis.ActualHeight*0.3));
+            return temp;
+        }
+
+        private Image prerender_gun(Player player)
+        {
+            Image temp = new Image();
+            temp.Source = new BitmapImage(new Uri("Media/"+player.tank.texture.Substring(0,5)+"_gun.png", UriKind.Relative));
+            temp.Height = main_dis.ActualHeight * 0.015;
+            temp.Width = main_dis.ActualWidth * 0.075;
+            RotateTransform rotate = new RotateTransform();
+            if (player == main_game.player_1)
+            {
+                rotate = new RotateTransform(-player.gun_angle, 0, temp.Height / 2);
+            }
+            else if(player == main_game.player_2)
+            {
+                rotate = new RotateTransform(player.gun_angle, main_dis.ActualWidth * 0.075, temp.Height / 2);
+            }
+            temp.RenderTransform = rotate;
+            return temp;
         }
 
         private void angldown_btn_Click(object sender, RoutedEventArgs e)
@@ -96,9 +147,9 @@ namespace Balistic_Tank_Game
                 new_angle = main_game.player_1.gun_angle -= 0.5;
                 main_game.player_1.Set_gunangle(new_angle);
             }
-            else
+            else if(main_game.turn==Turn.player_2)
             {
-                new_angle = main_game.player_1.gun_angle -= 0.5;
+                new_angle = main_game.player_2.gun_angle -= 0.5;
                 main_game.player_2.Set_gunangle(new_angle);
             }
             Render();
@@ -114,7 +165,7 @@ namespace Balistic_Tank_Game
             }
             else
             {
-                new_angle = main_game.player_1.gun_angle += 0.5;
+                new_angle = main_game.player_2.gun_angle += 0.5;
                 main_game.player_2.Set_gunangle(new_angle);
             }
             Render();
@@ -140,7 +191,9 @@ namespace Balistic_Tank_Game
             clickAndHoldTimer_up.Stop();
         }
 
-
-
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Render();
+        }
     }
 }

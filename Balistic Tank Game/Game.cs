@@ -19,7 +19,7 @@ namespace Balistic_Tank_Game
         public Game(string name_1, string name_2, Tank tank_1, Tank tank_2)
         {
             player_1 = new Player(name_1, tank_1, 0.1);
-            player_2 = new Player(name_2, tank_2, 0.9);
+            player_2 = new Player(name_2, tank_2, 0.1);
 
             player_1.Shot += Shothandler;
             player_2.Shot += Shothandler;
