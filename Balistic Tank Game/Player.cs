@@ -14,15 +14,18 @@ namespace Balistic_Tank_Game
         public int armor { get; internal set; }
         public Tank tank { get; internal set; }
         public double gun_angle { get; set; }
+        public double position { get; internal set; }
 
-        public Player(string username, Tank tank) 
+        public Player(string username, Tank tank, double position) 
         {
             this.username = username;
             this.tank = tank;
             this.ammo = tank.ammo_storage;
             this.health = tank.max_health;
-            this.gun_angle = 15;
+            this.gun_angle = 45;
+            this.position = position;
         }
+
         Random random = new Random();
 
         public void Hit(int potencial_damage)
@@ -46,6 +49,14 @@ namespace Balistic_Tank_Game
         {
             gun_angle = angle;
             gun_align();
+        }
+
+        public void Set_position(double postion)
+        {
+            if(position >= 0 && position <= 1 )
+            {
+                 this.position = position;
+            }
         }
 
         private void gun_align()

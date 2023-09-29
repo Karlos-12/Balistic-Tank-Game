@@ -34,8 +34,8 @@ namespace Balistic_Tank_Game
             Timer_setup();
 
             //pseudo data
-            main_game = new Game("test_1", "test_2", new Tank("Tiger-1a", "Mega mrdnik to je", 15, 75, 275, 60, 10), new Tank("Tiger-2a", "Mega mrdnik to je", 15, 75, 275, 60, 10));
-            
+            main_game = new Game("test_1", "test_2", new Tank("Tiger-1a", "Mega mrdnik to je", 15, 75, 275, 60, 9), new Tank("Tiger-2a", "Mega mrdnik to je", 15, 75, 275, 60, 10));
+            main_game.player_1.Shoot();
             
             Render();
         }
