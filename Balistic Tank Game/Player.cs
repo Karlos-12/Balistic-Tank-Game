@@ -30,8 +30,8 @@ namespace Balistic_Tank_Game
 
         public void Hit(int potencial_damage)
         {
-            int damage = potencial_damage - (armor / 4);
-            armor = (armor / 4) - random.Next(0,(armor/6));
+            health -= potencial_damage - (armor / 4);
+            armor -= (armor / 4) - random.Next(0,(armor/6));
         }
 
         public delegate void ShotHandler(Player sender, int potencial_damage, double angle);

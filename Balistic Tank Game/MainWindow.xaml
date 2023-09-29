@@ -39,6 +39,7 @@
             <ProgressBar x:Name="health_bar" Grid.Column="0" Grid.Row="0" Margin="10,10,10,10" BorderBrush="{x:Null}" Foreground="#FFC50000" Background="#FF4D4D4D"/>
             <ProgressBar x:Name="armor_bar" Grid.Column="0" Grid.Row="1" Margin="10,10,10,10" BorderBrush="{x:Null}" Foreground="#FF0069A0" Background="#FF4D4D4D"/>
         </Grid>
+        <Button Content="Button" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="108" Margin="616,449,0,0" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Top" Width="368" Click="Button_Click"/>
 
     </Grid>
 </Window>

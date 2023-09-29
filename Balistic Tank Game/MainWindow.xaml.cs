@@ -35,7 +35,6 @@ namespace Balistic_Tank_Game
 
             //pseudo data
             main_game = new Game("test_1", "test_2", new Tank("Tiger-1a", "Mega mrdnik to je", 15, 75, 275, 60, 9, "Tank1.png"), new Tank("Tiger-2a", "Mega mrdnik to je", 15, 75, 275, 60, 10, "Tank2.png"));
-            main_game.player_1.Shoot();
             
         }
 
@@ -133,7 +132,7 @@ namespace Balistic_Tank_Game
             }
             else if(player == main_game.player_2)
             {
-                rotate = new RotateTransform(player.gun_angle, main_dis.ActualWidth * 0.075, temp.Height / 2);
+                rotate = new RotateTransform(player.gun_angle, main_dis.ActualWidth * 0.063, temp.Height / 2);
             }
             temp.RenderTransform = rotate;
             return temp;
@@ -174,25 +173,42 @@ namespace Balistic_Tank_Game
         private void angldown_btn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             clickAndHoldTimer_down.Start();
+            Render();
         }
 
         private void angldown_btn_MouseUp(object sender, MouseButtonEventArgs e)
         {
             clickAndHoldTimer_down.Stop();
+            Render();
         }
 
         private void anglup_btn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             clickAndHoldTimer_up.Start();
+            Render();
         }
 
         private void anglup_btn_MouseUp(object sender, MouseButtonEventArgs e)
         {
             clickAndHoldTimer_up.Stop();
+            Render();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Render();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(main_game.turn == Turn.player_1)
+            {
+                main_game.player_1.Shoot();
+            }
+            else if(main_game.turn == Turn.player_2)
+            {
+                main_game.player_2.Shoot();
+            }
             Render();
         }
     }

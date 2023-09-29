@@ -37,9 +37,9 @@ namespace Balistic_Tank_Game
                     player_1.Hit(potencial);
                     MessageBox.Show("Hit confirmed!");
                 }
-                else if ((((sender.position + range + explosion_spred) > player_2.position) && ((sender.position + range - explosion_spred) < player_2.position)) || (((sender.position - range + explosion_spred) > player_2.position) && ((sender.position - range - explosion_spred) < player_2.position)))
+                else if ((((sender.position + range + explosion_spred) > 1-player_2.position) && ((sender.position + range - explosion_spred) < 1-player_2.position)) || (((sender.position - range + explosion_spred) > 1-player_2.position) && ((sender.position - range - explosion_spred) < 1-player_2.position)))
                 {
-                    player_1.Hit(potencial);
+                    player_2.Hit(potencial);
                     MessageBox.Show("Hit confirmed!");
                 }
 
