@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Balistic_Tank_Game"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1600" Background="#FF1A1A1A" Foreground="{x:Null}" Loaded="Window_Loaded" WindowState="Maximized">
+        Title="MainWindow" Height="900" Width="1600" Background="#FF131313" Foreground="{x:Null}" Loaded="Window_Loaded" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>

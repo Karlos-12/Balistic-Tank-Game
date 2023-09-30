@@ -113,6 +113,18 @@ namespace Balistic_Tank_Game
             main_dis.Children.Add(temp2g);
             Canvas.SetRight(temp2g, main_dis.ActualWidth * (main_game.player_2.position/2 + 0.075));
             Canvas.SetBottom(temp2g, (main_dis.ActualHeight * 0.41));
+
+            var tempfrg = new Image()
+            {
+                Height = main_dis.ActualHeight*0.35,
+                Width = main_dis.ActualWidth*1,
+                Source = new BitmapImage(new Uri("Media/foreground.png", UriKind.Relative)),
+                Stretch = Stretch.Fill
+            };
+            Canvas.SetBottom(tempfrg, 0);
+            Canvas.SetLeft(tempfrg, 0);
+            main_dis.Children.Add(tempfrg);
+
         }
 
         private Image prerender_tank(Tank tank)
