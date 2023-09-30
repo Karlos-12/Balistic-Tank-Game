@@ -16,10 +16,14 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="user2_dis" Content="username_2" Margin="10,10,10,10" Background="{x:Null}" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="64" FontWeight="Bold" FontFamily="Consolas" Grid.Column="1"/>
+        <Label x:Name="user2_dis" Content="username_2" Margin="10,10,10,10" Background="{x:Null}" Foreground="#FF19BA00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="64" FontWeight="Bold" FontFamily="Consolas" Grid.Column="1" BorderThickness="5,5,5,5" BorderBrush="#FF19BA00"/>
 
-        <Label x:Name="user1_dis" Content="username_1" Margin="10,10,10,10" Background="{x:Null}" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="64" FontWeight="Bold" FontFamily="Consolas"/>
-        <Canvas x:Name="main_dis" Grid.ColumnSpan="2" Margin="50,10,50,10" Grid.Row="1" Grid.Column="0" Background="#7F000000"/>
+        <Label x:Name="user1_dis" Content="username_1" Margin="10,10,10,10" Background="{x:Null}" Foreground="#FF19BA00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="64" FontWeight="Bold" FontFamily="Consolas" BorderBrush="#FF19BA00" BorderThickness="5,5,5,5"/>
+        <Canvas x:Name="main_dis" Grid.ColumnSpan="2" Margin="50,10,50,10" Grid.Row="1" Grid.Column="0">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Media/background.png" Stretch="Fill" TileMode="None"/>
+            </Canvas.Background>
+        </Canvas>
 
         <Grid Margin="10,10,0,0" Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
@@ -33,13 +37,18 @@
                 <ColumnDefinition Width="1.5*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="anglup_btn" Content="UP" Background="#FF2E2E2E" BorderBrush="{x:Null}" Foreground="White" FontFamily="Consolas" FontSize="64" Grid.Column="3" Margin="10,10,10,10" Click="anglup_btn_Click" MouseDown="anglup_btn_MouseDown" MouseUp="anglup_btn_MouseUp" FontWeight="Bold" Grid.RowSpan="2"/>
-            <Button x:Name="angldown_btn" Content="DOWN" Background="#FF2E2E2E" BorderBrush="{x:Null}" Foreground="White" FontFamily="Consolas" FontSize="64" Margin="10,10,10,10" Grid.Column="2" Click="angldown_btn_Click" MouseDown="angldown_btn_MouseDown" MouseUp="angldown_btn_MouseUp" FontWeight="Bold" Grid.RowSpan="2"/>
-            <Label x:Name="angle_dis" Grid.Column="1" Content="000" Margin="10,10,10,10" Foreground="#FF17BB00" Background="#FF2E2E2E" FontSize="84" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Grid.RowSpan="2"/>
-            <ProgressBar x:Name="health_bar" Grid.Column="0" Grid.Row="0" Margin="10,10,10,10" BorderBrush="{x:Null}" Foreground="#FFC50000" Background="#FF4D4D4D"/>
-            <ProgressBar x:Name="armor_bar" Grid.Column="0" Grid.Row="1" Margin="10,10,10,10" BorderBrush="{x:Null}" Foreground="#FF0069A0" Background="#FF4D4D4D"/>
+            <Button x:Name="shoot_btn" Content="SHOOT" Margin="10,10,10,10" Click="Button_Click" Background="{x:Null}" BorderBrush="#FF19BA00" Foreground="#FF19BA00" FontSize="64" FontWeight="Bold" FontFamily="Consolas" BorderThickness="5,5,5,5" Grid.Column="3" Grid.RowSpan="2"/>
+
+            <Button x:Name="anglup_btn" Content="UP" Background="{x:Null}" BorderBrush="#FF19BA00" Foreground="#FF19BA00" FontFamily="Consolas" FontSize="64" Grid.Column="2" Margin="10,10,10,10" Click="anglup_btn_Click" MouseDown="anglup_btn_MouseDown" MouseUp="anglup_btn_MouseUp" FontWeight="Bold" BorderThickness="5,5,5,5"/>
+            <Button x:Name="angldown_btn" Content="DOWN" Background="{x:Null}" BorderBrush="#FF19BA00" Foreground="#FF19BA00" FontFamily="Consolas" FontSize="64" Margin="10,10,10,10" Grid.Column="2" Click="angldown_btn_Click" MouseDown="angldown_btn_MouseDown" MouseUp="angldown_btn_MouseUp" FontWeight="Bold" BorderThickness="5,5,5,5" Grid.Row="1"/>
+            <Label x:Name="angle_dis" Grid.Column="1" Content="000" Margin="10,10,10,10" Foreground="#FF17BB00" Background="{x:Null}" FontSize="84" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Grid.RowSpan="2" BorderBrush="#FF19BA00" BorderThickness="5,5,5,5"/>
+            <ProgressBar x:Name="health_bar" Grid.Column="0" Grid.Row="0" Margin="10,10,10,10" BorderBrush="{x:Null}" Foreground="#19C50000" Background="{x:Null}"/>
+            <ProgressBar x:Name="armor_bar" Grid.Column="0" Grid.Row="1" Margin="10,10,10,10" BorderBrush="{x:Null}" Foreground="#19001F9C" Background="{x:Null}"/>
+            <Label x:Name="health_lb" Content="Label" Margin="10,10,10,10" Background="{x:Null}" Foreground="#FF19BA00" FontSize="45" FontFamily="Consolas" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="#FF19BA00" BorderThickness="5,5,5,5"/>
+            <Label x:Name="armor_lb" Content="Label" Margin="10,10,10,10" Background="{x:Null}" Foreground="#FF19BA00" FontSize="45" FontFamily="Consolas" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" BorderThickness="5,5,5,5" BorderBrush="#FF19BA00"/>
+            <Label x:Name="inf_lb1" Content="health" Margin="607,10,0,10" Background="{x:Null}" Foreground="#FF19BA00" FontSize="45" FontFamily="Consolas" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="5,5,5,5"/>
+            <Label x:Name="inf_lb2" Content="shield" Margin="607,10,10,10" Background="{x:Null}" Foreground="#FF19BA00" FontSize="45" FontFamily="Consolas" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="5,5,5,5" Grid.Row="1"/>
         </Grid>
-        <Button Content="Button" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="108" Margin="616,449,0,0" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Top" Width="368" Click="Button_Click"/>
 
     </Grid>
 </Window>

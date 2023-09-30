@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Media\background.png" />
+    <None Remove="Media\depositphotos_365608542-stock-photo-black-soil-plowed-field-texture.webp" />
+    <None Remove="Media\foreground.png" />
     <None Remove="Media\Tank1.png" />
     <None Remove="Media\Tank1_gun.png" />
     <None Remove="Media\Tank2.png" />
@@ -16,6 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Media\background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\foreground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Media\Tank1_gun.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

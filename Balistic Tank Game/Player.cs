@@ -21,6 +21,7 @@ namespace Balistic_Tank_Game
             this.username = username;
             this.tank = tank;
             this.ammo = tank.ammo_storage;
+            this.armor = tank.max_armor;
             this.health = tank.max_health;
             this.gun_angle = 45;
             this.position = position;
@@ -41,7 +42,7 @@ namespace Balistic_Tank_Game
         {
             ammo--;
             Shot.Invoke(this, tank.damage, gun_angle);
-            gun_angle += random.Next(-5, 5);
+            gun_angle += random.Next(-15, 15);
             gun_align();    
         }
 
@@ -60,9 +61,9 @@ namespace Balistic_Tank_Game
         }
 
         private void gun_align()
-        {   
-            if (gun_angle < 0) gun_angle = 0;
-            else if (gun_angle > 90) gun_angle = 90;
+        {
+            if (gun_angle <= 0) gun_angle = 0.5;
+            else if (gun_angle >= 90) gun_angle = 89.5;
         }
 
 

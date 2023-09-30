@@ -27,6 +27,7 @@ namespace Balistic_Tank_Game
         DispatcherTimer clickAndHoldTimer_up;
         DispatcherTimer clickAndHoldTimer_down;
         const int clikandhold_time = 25;
+        Brush green_brush = new SolidColorBrush(Color.FromArgb(26,25,186,0));
 
         public MainWindow()
         {
@@ -34,7 +35,7 @@ namespace Balistic_Tank_Game
             Timer_setup();
 
             //pseudo data
-            main_game = new Game("test_1", "test_2", new Tank("Tiger-1a", "Mega mrdnik to je", 15, 75, 275, 60, 9, "Tank1.png"), new Tank("Tiger-2a", "Mega mrdnik to je", 15, 75, 275, 60, 10, "Tank2.png"));
+            main_game = new Game("Player 1", "Player 2", new Tank("Tiger-1a", "Mega mrdnik to je", 15, 75, 275, 60, 9, "Tank1.png"), new Tank("Tiger-2a", "Mega mrdnik to je", 15, 75, 275, 60, 10, "Tank2.png"));
             
         }
 
@@ -66,23 +67,28 @@ namespace Balistic_Tank_Game
 
             if (main_game.turn == Turn.player_1)
             {
-                user1_dis.Foreground = Brushes.Green;
-                user2_dis.Foreground = Brushes.White;
+                user2_dis.Background = null;
+                user1_dis.Background = green_brush;
                 angle_dis.Content = main_game.player_1.gun_angle +"°";
                 health_bar.Value = main_game.player_1.health;
                 health_bar.Maximum = main_game.player_1.tank.max_health;
+                health_lb.Content = main_game.player_1.health +"/"+ main_game.player_1.tank.max_health;
                 armor_bar.Value = main_game.player_1.armor;
                 armor_bar.Maximum = main_game.player_1.tank.max_armor;
+                armor_lb.Content = main_game.player_1.armor +"/"+ main_game.player_1.tank.max_armor;
             }
-            else
+            else if(main_game.turn == Turn.player_2)
             {
-                user2_dis.Foreground = Brushes.Green;
-                user1_dis.Foreground = Brushes.White;
+                user1_dis.Background = null;
+                user2_dis.Background = green_brush;
                 angle_dis.Content = main_game.player_2.gun_angle +"°";
                 health_bar.Value = main_game.player_2.health;
                 health_bar.Maximum = main_game.player_2.tank.max_health;
+                health_lb.Content = main_game.player_2.health + "/" + main_game.player_2.tank.max_health;
                 armor_bar.Value = main_game.player_2.armor;
                 armor_bar.Maximum = main_game.player_2.tank.max_armor;
+                armor_lb.Content= main_game.player_2.armor;
+                armor_lb.Content = main_game.player_2.armor + "/" + main_game.player_2.tank.max_armor;
             }
 
 
